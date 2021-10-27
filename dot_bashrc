@@ -1,0 +1,149 @@
+source <(kubectl completion bash)
+complete -F __start_kubectl k
+
+
+# baseten
+alias k="kubectl"
+alias kd="kubectl describe"
+alias kdd="kubectl describe deployment"
+alias kdp="kubectl describe pod"
+alias kdelp="kubectl delete pod"
+alias kds="kubectl describe service"
+alias kdks="kubectl describe ksvc"
+alias kdr="kubectl describe revision"
+alias kdsc="kubectl describe secret"
+alias kdsa="kubectl describe serviceaccount"
+alias kdn="kubectl describe node"
+
+alias kl="kubectl logs"
+
+alias kg="kubectl get"
+alias kgp="kubectl get pods"
+alias kgpt="kubectl get pods --sort-by=\".status.startTime\""
+alias kgpoy="kubectl get pods -o yaml"
+alias kgpoj="kubectl get pods -o json"
+alias kgpn="kubectl get pods -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName"
+alias kgd="kubectl get deployments"
+alias kgs="kubectl get services"
+alias kgks="kubectl get ksvc"
+alias kgr="kubectl get revisions"
+alias kgrt="kubectl get routes"
+alias kgsc="kubectl get secrets"
+alias kgsa="kubectl get serviceaccounts"
+alias kgn="kubectl get nodes"
+alias kgns="kubectl get namespaces"
+alias kgc="kubectl get configmaps"
+alias kgj="kubectl get jobs"
+alias kgtr="kubectl get taskruns"
+alias kctx="kubectl config current-context"
+alias kcp="kubectl cp"
+alias ktp="kubectl top pods"
+alias wktp="watch kubectl top pods"
+alias ktn="kubectl top nodes"
+alias kekpa="k edit kpa"
+alias kgdr="k get deployments --sort-by='spec.replicas'"
+alias k='kubectl'
+alias kgp='kubectl get pods'
+alias kgv='kubectl get vs'
+alias kgg='kubectl get gw'
+
+alias kedyn="kubectl -n baseten edit cm baseten-django-dynamic-settings"
+
+alias ksctx='kubectx'
+
+function kgpw {
+  watch kubectl get pods $@
+}
+
+function ksns {
+  local CTX=$(kubectl config current-context)
+  local NEWNS=$(kubectl get ns --no-headers | awk '{ print $1 }' | fzf)
+  kubectl config set-context $CTX --namespace=$NEWNS
+  echo "new namespace: $NEWNS"
+}
+
+function knsb {
+  local CTX=$(kubectl config current-context)
+  local NEWNS='baseten'
+  kubectl config set-context $CTX --namespace=$NEWNS
+  echo "new namespace: $NEWNS"
+}
+
+function kit {
+  kubectl exec -it $@ user-container -- /bin/bash
+}
+
+function kitdraft {
+  kubectl exec -it $(kgp | grep py-draft | awk '{print $1}') user-container -- /bin/bash
+}
+
+function kpoddbgsetup {
+  POD=$1
+  kubectl cp $HOME/work/kdebug/setup.sh $POD:/root/setup.sh
+  kubectl cp $HOME/work/kdebug/vimrc $POD:/root/.vimrc
+  kubectl cp $HOME/work/kdebug/pbashrc $POD:/root/pbashrc
+  kubectl exec $POD -- chmod +x /root/setup.sh
+  kubectl exec $POD -- /root/setup.sh
+}
+
+
+function klog {
+  kubectl logs $@ user-container
+}
+
+source $HOME/work/istio-release/istio-1.6.8/tools/istioctl.bash
+
+alias kcmd="kubectl run -i --rm --restart=Never dummy --image=dockerqa/curl:ubuntu-trusty --command -- sh -c"
+alias istioctlpc="istioctl proxy-config"
+
+function knsswitch {
+  kubectl config set-context $(kubectl config current-context) --namespace=$@
+}
+
+alias kcurrentns="kubectl config view --minify --output 'jsonpath={..namespace}'; echo"
+
+
+alias envoydash="istioctl dashboard envoy"
+
+function kgnr {
+  local CPU="CPU:status.allocatable.cpu"
+  local MEMORY="MEMORY:status.allocatable.memory"
+  local GPU="GPU:status.allocatable.nvidia\.com/gpu"
+  local NAME="NAME:metadata.name"
+  local NODEGROUP_NAME="NodeName:.metadata.labels.alpha\.eksctl\.io/nodegroup-name"
+  kubectl get nodes -o custom-columns="$NAME,$CPU,$MEMORY,$GPU,$NODEGROUP_NAME"
+}
+
+alias kcurlpod="kubectl run -i --tty --rm debug --image=curlimages/curl --restart=Never -- sh"
+alias kdebugpod="kubectl run nginx --image=nginx --restart=Never"
+alias kdelpf="kubectl delete pod --force"
+
+function klabels {
+  kubectl get pods $@ -o json | jq '.metadata.labels'
+}
+
+alias with_aws=". /Users/pankaj/Library/Caches/pypoetry/virtualenvs/baseten-dizeEr3E-py3.7/bin/activate"
+
+function promcat {
+  kubectl exec -it $@ -n logging-user -- cat /etc/promtail/promtail.yaml
+}
+
+function firstpy {
+  kubectl get pods -n baseten -l app=pynode -o json | jq -r '.items[0].metadata.name'
+}
+
+function firstpylabels {
+  kubectl get pods -n baseten -l app=pynode -o json | jq -r '.items[0].metadata.labels'
+}
+
+# tkn
+alias ttls="tkn taskrun list"
+alias ttlg="tkn taskrun logs -f"
+alias cdhh="cd helm/helmfile"
+
+function helm_image_tag() {
+  helm get values -n baseten baseten | grep -i tag | awk '{ print $2 }'
+}
+
+alias tf="terraform"
+
