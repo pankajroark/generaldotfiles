@@ -91,8 +91,6 @@ function klog {
   kubectl logs $@ user-container
 }
 
-source $HOME/work/istio-release/istio-1.6.8/tools/istioctl.bash
-
 alias kcmd="kubectl run -i --rm --restart=Never dummy --image=dockerqa/curl:ubuntu-trusty --command -- sh -c"
 alias istioctlpc="istioctl proxy-config"
 
