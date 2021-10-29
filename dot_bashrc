@@ -21,3 +21,11 @@ PROMPT_COMMAND='history -a'
 export HISTCONTROL=ignorespace:erasedups
 export HISTIGNORE="ls:ps:history:pwd"
 shopt -s cmdhist
+
+alias pyt="poetry run pytest -v --capture=no"
+alias shp="poetry run python backend/manage.py shell_plus"
+alias mig="poetry run python backend/manage.py migrate"
+alias runserver="poetry run python backend/manage.py runserver"
+alias dbshell="poetry run python backend/manage.py dbshell"
+alias makemig='poetry run python backend/manage.py makemigrations'
+
