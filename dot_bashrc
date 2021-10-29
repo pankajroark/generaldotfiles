@@ -1,0 +1,23 @@
+set -o vi
+
+alias v="vi"
+shopt -s histappend
+
+# search history backward
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind '"^[[15~": "jump\n"'
+
+bind "Control-j":vi-movement-mode
+bind "Control-p":history-search-backward
+bind "Control-a":beginning-of-line
+bind "Control-e":end-of-line
+bind "Control-b":backward-word
+bind "Control-f":forward-word
+
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
+PROMPT_COMMAND='history -a'
+export HISTCONTROL=ignorespace:erasedups
+export HISTIGNORE="ls:ps:history:pwd"
+shopt -s cmdhist
