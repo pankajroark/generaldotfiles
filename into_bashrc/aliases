@@ -3,13 +3,13 @@ DOTDIR=$HOME/.me
 alias v="vi"
 
 # todo: move to a dotedit function that auto-completes
-alias editbash="v + $DOTDIR/bashrc"
+alias editbash="v + $DOTDIR/into_bashrc/bashrc"
 alias sbash="source ~/.bashrc"
-alias skubectlrc="source $DOTDIR/kubectlrc"
+alias skubectlrc="source $DOTDIR/into_bashrc/kubectlrc"
 alias editvim="v + ~/.vimrc"
-alias editexports="v + $DOTDIR//exports"
-alias editfuncs="v + $DOTDIR/funcs"
-alias editalias="v + $DOTDIR/aliases"
+alias editexports="v + $DOTDIR/into_bashrc/exports"
+alias editfuncs="v + $DOTDIR/into_bashrc/funcs"
+alias editalias="v + $DOTDIR/into_bashrc/aliases"
 
 
 alias ls="ls -Gp"
