@@ -4,22 +4,6 @@ set nocompatible
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
-" TODO: Load plugins here (pathogen or vundle)
-call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-Plug 'jiangmiao/auto-pairs'
-Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
-Plug 'FooSoft/vim-argwrap'
-Plug 'easymotion/vim-easymotion'
-
-call plug#end()
-
 " Turn on syntax highlighting
 syntax on
 
