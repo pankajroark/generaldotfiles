@@ -1,14 +1,15 @@
-DOT_DIR=$HOME/me
+# This should match the one in bootstrap
+DOTDIR=$HOME/.me
 alias v="vi"
 
 # todo: move to a dotedit function that auto-completes
-alias editbash="v + $DOT_DIR/bashrc"
+alias editbash="v + $DOTDIR/bashrc"
 alias sbash="source ~/.bashrc"
-alias skubectlrc="source $DOT_DIR/kubectlrc"
+alias skubectlrc="source $DOTDIR/kubectlrc"
 alias editvim="v + ~/.vimrc"
-alias editexports="v + $DOT_DIR//exports"
-alias editfuncs="v + $DOT_DIR/funcs"
-alias editalias="v + $DOT_DIR/aliases"
+alias editexports="v + $DOTDIR//exports"
+alias editfuncs="v + $DOTDIR/funcs"
+alias editalias="v + $DOTDIR/aliases"
 
 
 alias ls="ls -Gp"

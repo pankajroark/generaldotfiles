@@ -1,6 +1,7 @@
 #! /bin/bash
 pushd $(dirname $0)
-DOTDIR=""$HOME/.me""
+# This should match the one in aliases
+DOTDIR="$HOME/.me"
 mkdir $DOTDIR
 cp -rf * $DOTDIR
 
