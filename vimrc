@@ -4,14 +4,8 @@ set nocompatible
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
-" Turn on syntax highlighting
-syntax on
-
 " For plugins to load correctly
 filetype plugin indent on
-
-" TODO: Pick a leader key
-" let mapleader = ","
 
 " Security
 set modelines=0
@@ -37,12 +31,6 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set noshiftround
-
-" Cursor motion
-set scrolloff=3
-set backspace=indent,eol,start
-set matchpairs+=<:> " use % to jump between pairs
-runtime! macros/matchit.vim
 
 " Move up/down editor lines
 nnoremap j gj
@@ -88,38 +76,12 @@ set listchars=tab:▸\ ,eol:¬
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
-" Color scheme (terminal)
-set t_Co=256
-set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
-" in ~/.vim/colors/ and uncomment:
-" colorscheme solarized
-"
-
 " Another mapping for escape
 inoremap jk <esc>
-
-" nerdtree
-nmap <leader>nf :NERDTreeFind<CR>
-nmap <leader>nn :NERDTreeToggle<CR>
 nnoremap <space> :w<cr>
 
 
 set winwidth=90
-noremap <Tab> :call Next_buffer_or_next_tab()<cr>
-
-fun! Next_buffer_or_next_tab()
-  let num_buffers = len(tabpagebuflist())
-  echo num_buffers
-  if (num_buffers <= 1)
-    :tabnext
-  else
-    :exe "normal \<C-w>\<C-w>"
-  endif
-endf
-
 " Remember last position
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
