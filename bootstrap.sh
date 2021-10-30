@@ -1,6 +1,10 @@
 #! /bin/bash
-cp $(dirname $0)/dot_kubectlrc ~/dot_kubectlrc
-cp $(dirname $0)/dot_bashrc ~/dot_bashrc
-echo "source ~/dot_kubectlrc" >> ~/.bashrc
-echo "source ~/dot_bashrc" >> ~/.bashrc
+pushd $(dirname $0)
+DOTDIR=""$HOME/.me""
+mkdir $DOTDIR
+cp -rf * $DOTDIR
+echo "source $DOTDIR/bashrc" >> ~/.bashrc
 
+ln -s $DOTDIR/vimrc ~/.vimrc 
+ln -s $DOTDIR/gitconfig ~/.gitconfig 
+popd

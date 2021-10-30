@@ -1,0 +1,77 @@
+DOT_DIR=$HOME/me
+alias v="vi"
+
+# todo: move to a dotedit function that auto-completes
+alias editbash="v + $DOT_DIR/bashrc"
+alias sbash="source ~/.bashrc"
+alias skubectlrc="source $DOT_DIR/kubectlrc"
+alias editvim="v + ~/.vimrc"
+alias editexports="v + $DOT_DIR//exports"
+alias editfuncs="v + $DOT_DIR/funcs"
+alias editalias="v + $DOT_DIR/aliases"
+
+
+alias ls="ls -Gp"
+alias ll="ls -l"
+alias cls="clear && ls"
+
+## git specific
+alias ga="git add"
+alias gs="git status"
+alias gdc="git diff --cached"
+alias gl="git log"
+alias glp="git log -p"
+
+# git commit with message
+alias gm="git commit -m"
+alias gco="git checkout"
+alias gb="git branch"
+alias gg="git grep"
+alias gdo="git diff origin"
+alias gpo="git push origin"
+alias gmrg="git mrg"
+# git branch current, mainly useful for scripts
+alias gbrc='git rev-parse --abbrev-ref HEAD'
+alias gbrp='git reflog | sed -n "s/.*checkout: moving from .* to \(.*\)/\1/p" | sed "2q;d"'
+# can supply a message, very useful
+alias gss='git stash save'
+alias gsa='git stash apply'
+alias gcs="git add --all .;git commit -m \"checkpoint\""
+alias gap='git add -p'
+# go to git root, then home directory, then filesystem root
+alias gup='[ $(git rev-parse --show-toplevel 2>/dev/null || echo ~) = $(pwd) ] && cd $([ $(echo ~) = $(pwd) ] && echo / || echo) || cd $(git rev-parse --show-toplevel 2>/dev/null)'
+alias gdm="git diff master"
+alias gam="git add .;git commit -m"
+
+alias grep='grep --color=auto'
+alias timestamp="date +%s"
+
+# json pretty print
+alias pretty_print_json="python -mjson.tool"
+
+alias diff='colordiff'
+
+alias less="less -r"
+
+#up aliases
+alias up2="up 2"
+alias up3="up 3"
+alias up4="up 4"
+
+alias gg="git grep"
+
+
+alias sp="python backend/manage.py shell_plus"
+alias psh="poetry shell"
+alias mm="git checkout master && git pull && git checkout - && git merge master"
+alias pgam="git add . && poetry run git commit -m"
+alias pgamc='pgam "Take care of review comments"'
+alias prun="poetry run"
+
+alias pyt="poetry run pytest -v --capture=no"
+alias shp="poetry run python backend/manage.py shell_plus"
+alias mig="poetry run python backend/manage.py migrate"
+alias runserver="poetry run python backend/manage.py runserver"
+alias dbshell="poetry run python backend/manage.py dbshell"
+alias makemig='poetry run python backend/manage.py makemigrations'
+

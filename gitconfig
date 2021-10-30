@@ -1,0 +1,65 @@
+[user]
+  name = Pankaj Gupta 
+	email = pankaj.roark@gmail.com
+ 
+[alias]
+  # nice log output
+      lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+ 
+  # Search for a given string in all patches and print commit messages
+  # example: search for any commit that adds or removes string "foobar"
+  #     git searchcommits foobar
+  # example: search commits for string "foobar" in directory src/lib
+  #     git searchcommits foobar src/lib
+  # example: search commits for "foobar", print full diff of commit with 1 line context
+  #     git searchcommits foobar --pickaxe-all -U1 src/lib
+  searchcommits = "!f() { query=\"$1\"; shift; git log -S\"$query\" \"$@\"; }; f \"$@\""
+
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  dfc = diff --cached
+  mrg = merge --no-commit --no-ff
+  mrgs = merge --no-commit --squash
+  po = push origin head
+ 
+[color]
+	ui = true
+
+[color "branch"]
+  current = yellow black
+  local = yellow
+  remote = magenta
+[color "diff"]
+  meta = yellow
+  frag = magenta
+  old = red
+  new = green
+  whitespace = white
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan reverse
+  branch = magenta
+ 
+#Highlight whitespace in diffs
+[core]
+	whitespace = trailing-space,space-before-tab,tab-in-indent
+  editor = vim
+	# excludesfile = /Users/pankaj/.gitignore_global
+[pivotal]
+	api-token = 914467678d85d8e1dc4c639bce10bd1a
+	full-name = Pankaj Gupta
+[diff]
+	renames = true
+[http]
+	postBuffer = 524288000
+[gui]
+	# recentrepo = /Users/pankajg/workspace/source2
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
