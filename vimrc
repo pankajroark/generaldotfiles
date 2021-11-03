@@ -140,3 +140,17 @@ set noswapfile
 nmap <leader>nf :NERDTreeFind<CR>
 nmap <leader>nn :NERDTreeToggle<CR>
 nnoremap <space> :w<cr>
+
+" Window switching
+noremap <Tab> :call Next_buffer_or_next_tab()<cr>
+
+fun! Next_buffer_or_next_tab()
+  let num_buffers = len(tabpagebuflist())
+  echo num_buffers
+  if (num_buffers <= 1)
+    :tabnext
+  else
+    :exe "normal \<C-w>\<C-w>"
+  endif
+endf
+
