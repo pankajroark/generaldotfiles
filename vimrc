@@ -22,6 +22,28 @@ set visualbell
 " Encoding
 set encoding=utf-8
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'jiangmiao/auto-pairs'
+Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
+Plug 'FooSoft/vim-argwrap'
+Plug 'easymotion/vim-easymotion'
+Plug 'jeetsukumaran/vim-indentwise'
+
+call plug#end()
+
 " Whitespace
 set wrap
 set textwidth=99
@@ -114,3 +136,7 @@ set omnifunc=syntaxcomplete#Complete
 
 set noswapfile
 
+" nerdtree
+nmap <leader>nf :NERDTreeFind<CR>
+nmap <leader>nn :NERDTreeToggle<CR>
+nnoremap <space> :w<cr>

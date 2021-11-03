@@ -1,6 +1,6 @@
 # This should match the one in bootstrap
 DOTDIR=$HOME/.me
-alias v="vi"
+alias v="vim"
 
 # todo: move to a dotedit function that auto-completes
 alias editbash="v + $DOTDIR/into_bashrc/bashrc"
