@@ -86,3 +86,18 @@ function deploy_to_demo() {
 function gbm {
   git checkout master && git pull && git checkout -b pg/$1
 }
+
+function cd_git_root() {
+  [ $(git rev-parse --show-toplevel 2>/dev/null || echo ~) = $(pwd) ] && cd $([ $(echo ~) = $(pwd) ] && echo / || echo) || cd $(git rev-parse --show-toplevel 2>/dev/null)
+}
+
+
+function chkpt() {
+  pushd .
+  cd_git_root
+  git add .
+  git commit -m ${1-checkpoint}
+  popd
+}
+
+
