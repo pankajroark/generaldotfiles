@@ -1,0 +1,88 @@
+
+# move up n directories
+function up () { if test $# = 1 ; then s=$( printf "%$1s" ); s=${s// /..\/}; cd $s ; else cd .. ; fi; }
+
+function ifind() {
+  find $PWD -iname $1
+}
+
+# Get git branches by time but not interactively
+function gbtni() {
+  local COUNT=${1:-12}
+  for i in `git for-each-ref --sort=-committerdate refs/heads/ | awk '{print$3}' | cut -c 12- | head -n $COUNT`
+  do 
+    echo -e "\033[0;31m $i"
+  done
+  echo " ..."
+}
+# Get git branches by time interactively
+function gbt() {
+  gbtni 20 | fzf | awk '{print $NF}' | xargs -I '{}' git co {}
+}
+
+
+function merge_master() {
+  cur_branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+  print_exec git co master
+  print_exec kinit
+  print_exec git pull
+  print_exec git co $cur_branch
+  print_exec git merge master
+}
+
+function mm {
+  merge_master
+}
+
+function _deploy_current_branch_to_env() {
+  set -e
+  DEPLOY_ENV=$1
+  git branch -D $DEPLOY_ENV
+  git push origin --delete $DEPLOY_ENV
+  git co -b $DEPLOY_ENV
+  git push --set-upstream origin $DEPLOY_ENV
+  git push origin $DEPLOY_ENV
+  set +e
+}
+
+
+function branch_to_staging() {
+  set -e
+  read -p "Are you sure to delete the remote staging branch and replace with current branch?"
+  git checkout master 
+  git pull 
+  git checkout - 
+  git merge master
+
+  _deploy_current_branch_to_env staging
+  set +e
+}
+
+function deploy_to_production() {
+  set -e
+  CURRENT_REPO_NAME=$(basename $(git rev-parse --show-toplevel))
+  if [[ $CURRENT_REPO_NAME != "baseten" ]]; then
+    echo "$CURRENT_REPO_NAME is not baseten, can only deploy from baseten repo"
+    return
+  fi
+  read -p "Are you sure to deploy master to production?"
+  git stash
+  git checkout master 
+  git pull 
+  _deploy_current_branch_to_env production
+  set +e
+}
+
+function deploy_to_demo() {
+  set -e
+  read -p "Are you sure to deploy master to demo?"
+  git stash
+  git checkout master 
+  git pull 
+  _deploy_current_branch_to_env demo
+  set +e
+}
+
+function gbm {
+  git checkout master && git pull && git checkout -b pg/$1
+}
