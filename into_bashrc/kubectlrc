@@ -135,8 +135,8 @@ function firstpylabels {
 }
 
 # tkn
-alias ttls="tkn taskrun list"
-alias ttlg="tkn taskrun logs -f"
+alias ttls="tkn taskrun list -n baseten-tekton"
+alias ttlg="tkn taskrun logs -f -n baseten-tekton"
 alias cdhh="cd helm/helmfile"
 
 function helm_image_tag() {
