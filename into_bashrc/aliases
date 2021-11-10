@@ -77,3 +77,4 @@ alias dbshell="poetry run python backend/manage.py dbshell"
 alias makemig='poetry run python backend/manage.py makemigrations'
 alias epd='poetry run python backend/manage.py ensure_pynode_deployed'
 
+alias watch='watch '
