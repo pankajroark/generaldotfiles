@@ -46,6 +46,21 @@ alias k='kubectl'
 alias kgp='kubectl get pods'
 alias kgv='kubectl get vs'
 alias kgg='kubectl get gw'
+alias kgtr="kubectl get taskruns"
+alias kgpb='kubectl get pods -n baseten'
+alias keks="kubectl edit ksvc"
+alias kecm='kubectl edit configmap'
+alias kgcmoy='kubectl get configmap -o yaml'
+alias kgsoy='kubectl get service -o yaml'
+alias kgsoj='kubectl get service -o json'
+
+function kgpw {
+  watch kubectl get pods $@
+}
+
+function kgptw {
+  watch kubectl get pods --sort-by=.metadata.creationTimestamp $@
+}
 
 alias kedyn="kubectl -n baseten edit cm baseten-django-dynamic-settings"
 
@@ -91,6 +106,8 @@ function klog {
   kubectl logs $@ user-container
 }
 
+alias kmlog="kubectl logs -c model-container"
+
 alias kcmd="kubectl run -i --rm --restart=Never dummy --image=dockerqa/curl:ubuntu-trusty --command -- sh -c"
 alias istioctlpc="istioctl proxy-config"
 
@@ -120,6 +137,10 @@ function klabels {
   kubectl get pods $@ -o json | jq '.metadata.labels'
 }
 
+function kanns {
+  kubectl get pods $@ -o json | jq '.metadata.annotations'
+}
+
 alias with_aws=". /Users/pankaj/Library/Caches/pypoetry/virtualenvs/baseten-dizeEr3E-py3.7/bin/activate"
 
 function promcat {
@@ -136,6 +157,7 @@ function firstpylabels {
 
 # tkn
 alias ttls="tkn taskrun list -n baseten-tekton"
+alias ttlsh="tkn taskrun list -n baseten-tekton | head"
 alias ttlg="tkn taskrun logs -f -n baseten-tekton"
 alias cdhh="cd helm/helmfile"
 
@@ -144,4 +166,8 @@ function helm_image_tag() {
 }
 
 alias tf="terraform"
+
+function kgpoyv {
+  kubectl get pods -o yaml $1 | vim -
+}
 
