@@ -65,6 +65,7 @@ alias gg="git grep"
 alias sp="python backend/manage.py shell_plus"
 alias psh="poetry shell"
 alias mm="git checkout master && git pull && git checkout - && git merge master"
+alias mmain="git checkout main && git pull && git checkout - && git merge main"
 alias pgam="git add . && poetry run git commit -m"
 alias pgamc='pgam "Take care of review comments"'
 alias prun="poetry run"
