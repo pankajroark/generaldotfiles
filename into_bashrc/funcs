@@ -84,7 +84,13 @@ function deploy_to_demo() {
 }
 
 function gbm {
-  git checkout master && git pull && git checkout -b pg/$1
+  if [ `git rev-parse --verify main 2>/dev/null` ]
+  then
+    local main_br=main
+  else
+    local main_br=master
+  fi
+  git checkout $main_br && git pull && git checkout -b pg/$1
 }
 
 function jump-to-git-root {
