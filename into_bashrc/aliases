@@ -80,3 +80,5 @@ alias epd='poetry run python backend/manage.py ensure_pynode_deployed'
 
 alias watch='watch '
 alias ms='minikube status'
+
+alias dmanage='poetry run python backend/manage.py'
