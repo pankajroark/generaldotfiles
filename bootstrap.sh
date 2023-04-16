@@ -16,5 +16,6 @@ grep -qxF "source ~/.my_bashrc" ~/.bashrc || echo "source ~/.my_bashrc" >> ~/.ba
 popd
 
 ln -f -s $DOTDIR/vimrc ~/.vimrc 
-ln -f -s $DOTDIR/gitconfig ~/.gitconfig 
+ln -f -s $DOTDIR/gitconfig ~/.gitconfig
+ln -f -s $DOTDIR/tmux.conf ~/.tmux.conf
 popd
