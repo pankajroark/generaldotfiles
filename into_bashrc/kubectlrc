@@ -171,3 +171,12 @@ function kgpoyv {
   kubectl get pods -o yaml $1 | vim -
 }
 
+function knodessh {
+  kubectl debug node/$1 -it --image=ubuntu
+}
+
+
+function knodes_by_instance_type {
+  kubectl get nodes -o json|jq -Cjr '.items[] | .metadata.name," ",.metadata.labels."beta.kubernetes.io/instance-type"," ",.metadata.labels."beta.kubernetes.io/arch", "\n"'|sort -k2
+}
+
