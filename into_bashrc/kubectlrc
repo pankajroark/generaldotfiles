@@ -180,3 +180,8 @@ function knodes_by_instance_type {
   kubectl get nodes -o json|jq -Cjr '.items[] | .metadata.name," ",.metadata.labels."beta.kubernetes.io/instance-type"," ",.metadata.labels."beta.kubernetes.io/arch", "\n"'|sort -k2
 }
 
+function kgp_gpu {
+  kubectl get pods -o json | jq -Cjr '.items[] | .metadata.name, " ",.spec.nodeSelector."karpenter.k8s.aws/instance-gpu-name", "\n"'
+}
+
+
