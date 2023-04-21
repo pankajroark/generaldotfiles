@@ -184,4 +184,8 @@ function kgp_gpu {
   kubectl get pods -o json | jq -Cjr '.items[] | .metadata.name, " ",.spec.nodeSelector."karpenter.k8s.aws/instance-gpu-name", "\n"'
 }
 
+function knode_pods {
+  kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=$1
+}
+
 
