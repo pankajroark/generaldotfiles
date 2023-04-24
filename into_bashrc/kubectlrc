@@ -18,23 +18,23 @@ alias kdn="kubectl describe node"
 alias kl="kubectl logs"
 
 alias kg="kubectl get"
-alias kgp="kubectl get pods"
+alias kgp="kubectl get pods --sort-by=.metadata.creationTimestamp"
 alias kgpt="kubectl get pods --sort-by=\".status.startTime\""
 alias kgpoy="kubectl get pods -o yaml"
 alias kgpoj="kubectl get pods -o json"
 alias kgpn="kubectl get pods -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName"
-alias kgd="kubectl get deployments"
-alias kgs="kubectl get services"
-alias kgks="kubectl get ksvc"
-alias kgr="kubectl get revisions"
-alias kgrt="kubectl get routes"
-alias kgsc="kubectl get secrets"
-alias kgsa="kubectl get serviceaccounts"
-alias kgn="kubectl get nodes"
-alias kgns="kubectl get namespaces"
-alias kgc="kubectl get configmaps"
-alias kgj="kubectl get jobs"
-alias kgtr="kubectl get taskruns"
+alias kgd="kubectl get deployments --sort-by=.metadata.creationTimestamp"
+alias kgs="kubectl get services --sort-by=.metadata.creationTimestamp"
+alias kgks="kubectl get ksvc --sort-by=.metadata.creationTimestamp"
+alias kgr="kubectl get revisions --sort-by=.metadata.creationTimestamp"
+alias kgrt="kubectl get routes --sort-by=.metadata.creationTimestamp"
+alias kgsc="kubectl get secrets --sort-by=.metadata.creationTimestamp"
+alias kgsa="kubectl get serviceaccounts --sort-by=.metadata.creationTimestamp"
+alias kgn="kubectl get nodes --sort-by=.metadata.creationTimestamp"
+alias kgns="kubectl get namespaces --sort-by=.metadata.creationTimestamp"
+alias kgc="kubectl get configmaps --sort-by=.metadata.creationTimestamp"
+alias kgj="kubectl get jobs --sort-by=.metadata.creationTimestamp"
+alias kgtr="kubectl get taskruns --sort-by=.metadata.creationTimestamp"
 alias kctx="kubectl config current-context"
 alias kcp="kubectl cp"
 alias ktp="kubectl top pods"
@@ -43,11 +43,9 @@ alias ktn="kubectl top nodes"
 alias kekpa="k edit kpa"
 alias kgdr="k get deployments --sort-by='spec.replicas'"
 alias k='kubectl'
-alias kgp='kubectl get pods'
-alias kgv='kubectl get vs'
+alias kgv='kubectl get vs --sort-by=.metadata.creationTimestamp'
 alias kgg='kubectl get gw'
-alias kgtr="kubectl get taskruns"
-alias kgpb='kubectl get pods -n baseten'
+alias kgpb='kubectl get pods -n baseten --sort-by=.metadata.creationTimestamp'
 alias keks="kubectl edit ksvc"
 alias kecm='kubectl edit configmap'
 alias kgcmoy='kubectl get configmap -o yaml'
