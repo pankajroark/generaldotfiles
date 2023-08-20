@@ -52,20 +52,12 @@ alias kgcmoy='kubectl get configmap -o yaml'
 alias kgsoy='kubectl get service -o yaml'
 alias kgsoj='kubectl get service -o json'
 
-function kgpw {
-  watch kubectl get pods $@
-}
-
-function kgptw {
-  watch kubectl get pods --sort-by=.metadata.creationTimestamp $@
-}
-
 alias kedyn="kubectl -n baseten edit cm baseten-django-dynamic-settings"
 
 alias ksctx='kubectx'
 
 function kgpw {
-  watch kubectl get pods $@
+   watch kubectl get pods --sort-by=.metadata.creationTimestamp $@
 }
 
 function ksns {
@@ -74,6 +66,14 @@ function ksns {
   kubectl config set-context $CTX --namespace=$NEWNS
   echo "new namespace: $NEWNS"
 }
+
+function ksnsm {
+  # For k switch namespace manual
+  local CTX=$(kubectl config current-context)
+  kubectl config set-context $CTX --namespace=$1
+  echo "new namespace: $1"
+}
+
 
 function knsb {
   local CTX=$(kubectl config current-context)
@@ -166,8 +166,14 @@ function helm_image_tag() {
 alias tf="terraform"
 
 function kgpoyv {
+if [ $# -ne 0 ]; then
   kubectl get pods -o yaml $1 | vim -
+else
+  local POD=$(kubectl get pods --no-headers | awk '{ print $1 }' | fzf)
+  kubectl get pods -o yaml $POD | vim -
+fi
 }
+
 
 function knodessh {
   kubectl debug node/$1 -it --image=ubuntu
