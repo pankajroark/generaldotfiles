@@ -51,6 +51,7 @@ alias kecm='kubectl edit configmap'
 alias kgcmoy='kubectl get configmap -o yaml'
 alias kgsoy='kubectl get service -o yaml'
 alias kgsoj='kubectl get service -o json'
+alias ked="kubectl edit deployment"
 
 alias kedyn="kubectl -n baseten edit cm baseten-django-dynamic-settings"
 
