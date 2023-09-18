@@ -192,5 +192,6 @@ function kgp_gpu {
 function knode_pods {
   kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=$1
 }
+alias khey="k run -it --rm hey --image=williamyeh/hey --restart=Never --"
 
 
