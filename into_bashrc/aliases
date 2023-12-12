@@ -12,8 +12,8 @@ alias editfuncs="v + $DOTDIR/into_bashrc/funcs"
 alias editalias="v + $DOTDIR/into_bashrc/aliases"
 
 
-alias ls="ls -Gp"
-alias ll="ls -l --color"
+alias ls="ls -Gp --color"
+alias ll="ls -l"
 alias cls="clear && ls"
 
 ## git specific
