@@ -13,7 +13,7 @@ alias editalias="v + $DOTDIR/into_bashrc/aliases"
 
 
 alias ls="ls -Gp"
-alias ll="ls -l"
+alias ll="ls -l --color"
 alias cls="clear && ls"
 
 ## git specific
