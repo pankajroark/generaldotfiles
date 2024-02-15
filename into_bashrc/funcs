@@ -124,3 +124,8 @@ function chkpt() {
   git commit -m ${1-checkpoint}
   popd
 }
+
+function dssh () 
+{ 
+    docker exec -it $1 /bin/bash
+}
