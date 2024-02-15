@@ -79,6 +79,8 @@ alias makemig='poetry run python backend/manage.py makemigrations'
 alias epd='poetry run python backend/manage.py ensure_pynode_deployed'
 
 alias watch='watch '
+alias dps='docker ps'
+alias dils='docker image ls'
 alias ms='minikube status'
 
 alias dmanage='poetry run python backend/manage.py'
