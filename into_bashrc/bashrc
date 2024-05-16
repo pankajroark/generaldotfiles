@@ -17,7 +17,24 @@ bind "Control-f":forward-word
 
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
-PROMPT_COMMAND='history -a'
+
+update_prompt() {
+    RESET="\[\033[0m\]"           # Reset color
+    RED="\[\033[0;31m\]"          # Red
+    GREEN="\[\033[0;32m\]"        # Green
+    YELLOW="\[\033[0;33m\]"       # Yellow
+    BLUE="\[\033[0;34m\]"         # Blue
+    PURPLE="\[\033[0;35m\]"       # Purple
+    CYAN="\[\033[0;36m\]"         # Cyan
+    WHITE="\[\033[1;37m\]"        # White
+
+    # Define the prompt ${TENSORRT_LLM_GIT_COMMIT:0:4} is the important part.
+    # It includes first 4 chars of the commit in prompt.
+    PS1="$GREEN\u$YELLOW@$RED\h $CYAN\w ${TENSORRT_LLM_GIT_COMMIT:0:4} $RESET\$ "
+    history -a
+}
+
+PROMPT_COMMAND=update_prompt
 export HISTCONTROL=ignorespace:erasedups
 export HISTIGNORE="ls:ps:history:pwd"
 shopt -s cmdhist
