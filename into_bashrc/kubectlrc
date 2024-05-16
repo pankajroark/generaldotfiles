@@ -1,6 +1,7 @@
-source <(kubectl completion bash)
-complete -F __start_kubectl k
-
+if command -v your_cli_tool > /dev/null 2>&1; then
+   source <(kubectl completion bash)
+   complete -F __start_kubectl k
+fi
 
 # baseten
 alias k="kubectl"
