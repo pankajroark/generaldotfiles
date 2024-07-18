@@ -129,3 +129,13 @@ function dssh ()
 { 
     docker exec -it $1 /bin/bash
 }
+
+function dlog () 
+{ 
+    docker logs $1
+}
+
+function dilsh ()
+{
+  docker image ls | head
+}
