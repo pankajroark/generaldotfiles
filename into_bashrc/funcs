@@ -132,7 +132,7 @@ function dssh ()
 
 function dlog () 
 { 
-    docker logs $1
+    docker logs $@
 }
 
 function dilsh ()
