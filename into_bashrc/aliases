@@ -85,4 +85,4 @@ alias ms='minikube status'
 
 alias dmanage='poetry run python backend/manage.py'
 alias rr='rye run'
-alias rrs='rye run sync -f'
+alias rsf='rye sync -f'
