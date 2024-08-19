@@ -195,4 +195,12 @@ function knode_pods {
 }
 alias khey="k run -it --rm hey --image=williamyeh/hey --restart=Never --"
 
+function kawscluster() {
+  local cluster_name=${1}
+  local region=${2}
+  local arn=$(aws eks --region ${region} update-kubeconfig --name ${cluster_name} | awk '{ print $3 }')
+  kubectl config use-context $arn
+}
+
+
 
