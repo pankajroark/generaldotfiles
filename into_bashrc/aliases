@@ -86,3 +86,5 @@ alias ms='minikube status'
 alias dmanage='poetry run python backend/manage.py'
 alias rr='rye run'
 alias rsf='rye sync -f'
+
+alias prod-vault="aws-vault exec prod-admin -d 2h -- /bin/bash -l"
