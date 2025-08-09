@@ -154,3 +154,10 @@ fun! Next_buffer_or_next_tab()
   endif
 endf
 
+" Enable persistent undo
+set undofile
+
+" Where to store undo files
+set undodir=~/.vim/undo
+
+
