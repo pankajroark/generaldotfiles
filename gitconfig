@@ -49,9 +49,6 @@
 	whitespace = trailing-space,space-before-tab,tab-in-indent
   editor = vim
 	# excludesfile = /Users/pankaj/.gitignore_global
-[pivotal]
-	api-token = 914467678d85d8e1dc4c639bce10bd1a
-	full-name = Pankaj Gupta
 [diff]
 	renames = true
 [http]
